@@ -37,8 +37,8 @@ pipeline {
                     echo 'Build successful! It will send an email'
                     emailext (
                                 subject: "Success: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                                //body: "Build successful! View the details at: ${env.BUILD_URL}",
-                                body: "Build successful! View the details at: https://luckxander.github.io/shop/",
+                                body: "Build successful! View the details at: ${env.BUILD_URL}",
+                                //body: "Build successful! View the details at: https://luckxander.github.io/shop/",
                                 to: "lusenabh@gmail.com",
                                 recipientProviders: [
                                     culprits(), 
