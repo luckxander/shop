@@ -125,19 +125,9 @@ def checkout_complete(thanks_url):
 product_url = "https://www.saucedemo.com/inventory.html"
 cart_url = "https://www.saucedemo.com/cart.html"
 thanks_url = "https://www.saucedemo.com/checkout-complete.html"
-    
-# --- Execution ---
-if __name__ == "__main__":
-    current_datetime = datetime.now()
-    datetime_string = current_datetime.strftime('%d-%m-%Y %H:%M:%S')
-    login = login(username_val, password_val)
-    cart = add_to_cart(product_url)
-    checkout = checkout(cart_url)
-    values = checkout_complete(thanks_url)
-    confirm, home = values
-    
+ 
     # HTML file with variables
-    original_content = """
+original_content = """
     <!DOCTYPE html>
     <html>
     <head>
@@ -159,8 +149,19 @@ if __name__ == "__main__":
     """
     # Clean the last result values from index.html and restore variables
     #with open('index.html', 'w') as file:
-        #file.write(original_content)
+        #file.write(original_content) 
+ 
     
+# --- Execution ---
+if __name__ == "__main__":
+    current_datetime = datetime.now()
+    datetime_string = current_datetime.strftime('%d-%m-%Y %H:%M:%S')
+    login = login(username_val, password_val)
+    cart = add_to_cart(product_url)
+    checkout = checkout(cart_url)
+    values = checkout_complete(thanks_url)
+    confirm, home = values
+        
     # Set up the Jinja2 environment
     env = Environment(loader=FileSystemLoader('.')) 
     template = env.get_template('report_template.html')
