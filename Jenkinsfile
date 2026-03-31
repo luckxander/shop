@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         // Set your credential ID here
-        GIT_CRED_ID = 'GitAuth'
+        GIT_CRED_ID = 'GitPushToken'
     }
     triggers {
         // Run daily at 1:00 AM Github server time
