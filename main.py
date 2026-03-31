@@ -162,7 +162,6 @@ if __name__ == "__main__":
     filedata = original_content.replace(file_name, original_content)
     with open('index.html', 'w') as file:
         file.write(filedata)
-        file.close()
     
     # Set up the Jinja2 environment
     env = Environment(loader=FileSystemLoader('.')) 
