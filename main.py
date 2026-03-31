@@ -137,7 +137,8 @@ if __name__ == "__main__":
     confirm, home = values
     
     # HTML file with variables
-    update_index_html = """
+    file_name = "index.html"
+    original_content = """
     <!DOCTYPE html>
     <html>
     <head>
@@ -158,8 +159,9 @@ if __name__ == "__main__":
     </html>
     """
     # Clean the last result values from index.html and restore variables
+    filedata = original_content.replace(file_name, original_content)
     with open('index.html', 'w') as file:
-        file.write(update_index_html)
+        file.write(filedata)
         file.close()
     
     # Set up the Jinja2 environment
