@@ -10,6 +10,9 @@ from jinja2 import Environment, FileSystemLoader
 
 # Fake url for shopping cart automation
 
+# Exclude old file 
+os.remove("index.html") 
+
 # In the same folder create a file named .env with credentials
 # Loads variables from .env
 load_dotenv()  
@@ -129,8 +132,6 @@ thanks_url = "https://www.saucedemo.com/checkout-complete.html"
  
 # --- Execution ---
 if __name__ == "__main__":
-    # Exclude old file 
-    os.remove("index.html") 
     current_datetime = datetime.now()
     datetime_string = current_datetime.strftime('%d-%m-%Y %H:%M:%S')
     login = login(username_val, password_val)
