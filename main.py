@@ -126,33 +126,6 @@ product_url = "https://www.saucedemo.com/inventory.html"
 cart_url = "https://www.saucedemo.com/cart.html"
 thanks_url = "https://www.saucedemo.com/checkout-complete.html"
  
-file_path = "index.html"
-with open(file_path, "w") as file:
-    file.write(""" 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>Execution Report</title>
-    </head>
-    <body>
-        <h2>Test automation using Python + Selenium</h2>
-        <h3>It uses fake shopping cart testing purpose</h3>
-        <h4>Execution Report</h4>
-        <p>Last run: {{ datetime_string }}</p>
-        <p>Below are the statuses from steps</p>
-        <p><b>Login:</b> {{ login }}</p>
-        <p><b>Add item to cart:</b> {{ cart }}</p>
-        <p><b>Checkout:</b> {{ checkout }}</p>
-        <p><b>Confirm checkout:</b> {{ confirm }}</p>
-        <p><b>Back to home:</b>  {{ home }}</p>
-    </body>
-    </html>
-    """)
-# Clean the last result values from index.html and restore variables
-#with open('index.html', 'w') as file:
-    #file.write(original_content) 
- 
-    
 # --- Execution ---
 if __name__ == "__main__":
     current_datetime = datetime.now()

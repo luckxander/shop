@@ -37,7 +37,6 @@ pipeline {
                     echo 'Build successful! It will send an email'
                     emailext (
                                 subject: "Success: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                                //body: "Build successful! View the details at: ${env.BUILD_URL}",
                                 body: "Build successful! View the details at: https://luckxander.github.io/shop/",
                                 to: "lusenabh@gmail.com",
                                 recipientProviders: [
@@ -50,7 +49,6 @@ pipeline {
                     echo 'Build failure! It will send an email'
                     emailext (
                                 subject: "Build Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                                //body: "Build successful! View the details at: ${env.BUILD_URL}",
                                 body: "Build failed. Check the console output here: https://luckxander.github.io/shop/",
                                 to: "lusenabh@gmail.com",
                                 recipientProviders: [
@@ -63,7 +61,6 @@ pipeline {
                     echo "Build finished with an unusual result: ${currentBuild.result}. It will send "
                     emailext (
                                 subject: "Unusual build result: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                                //body: "Build successful! View the details at: ${env.BUILD_URL}",
                                 body: "Build finished with an unusual result. Check the console output here: https://luckxander.github.io/shop/",
                                 to: "lusenabh@gmail.com",
                                 recipientProviders: [
