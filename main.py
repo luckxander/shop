@@ -158,9 +158,8 @@ if __name__ == "__main__":
     </html>
     """
     # Clean the last result values from index.html and restore variables
-  
-    with open('index.html', 'w') as file:
-        file.write(original_content)
+    #with open('index.html', 'w') as file:
+        #file.write(original_content)
     
     # Set up the Jinja2 environment
     env = Environment(loader=FileSystemLoader('.')) 
