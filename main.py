@@ -126,8 +126,9 @@ product_url = "https://www.saucedemo.com/inventory.html"
 cart_url = "https://www.saucedemo.com/cart.html"
 thanks_url = "https://www.saucedemo.com/checkout-complete.html"
  
-    # HTML file with variables
-original_content = """
+file_path = "index.html"
+with open(file_path, "w") as file:
+    file.write(""" 
     <!DOCTYPE html>
     <html>
     <head>
@@ -146,10 +147,10 @@ original_content = """
         <p><b>Back to home:</b>  {{ home }}</p>
     </body>
     </html>
-    """
+    """)
 # Clean the last result values from index.html and restore variables
-with open('index.html', 'w') as file:
-    file.write(original_content) 
+#with open('index.html', 'w') as file:
+    #file.write(original_content) 
  
     
 # --- Execution ---
