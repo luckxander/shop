@@ -126,8 +126,11 @@ product_url = "https://www.saucedemo.com/inventory.html"
 cart_url = "https://www.saucedemo.com/cart.html"
 thanks_url = "https://www.saucedemo.com/checkout-complete.html"
  
+ 
 # --- Execution ---
 if __name__ == "__main__":
+    # Exclude old file 
+    os.remove("index.html") 
     current_datetime = datetime.now()
     datetime_string = current_datetime.strftime('%d-%m-%Y %H:%M:%S')
     login = login(username_val, password_val)
