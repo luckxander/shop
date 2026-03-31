@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        // Set your credential ID here
+        GIT_CRED_ID = 'GitAuth'
+    }
     triggers {
         // Run daily at 1:00 AM Github server time
         cron('H 0 * * *') 
@@ -40,14 +44,10 @@ pipeline {
         stage('Commit & Push') {
             steps {
                 // Bind credentials securely
-                withCredentials([usernamePassword(credentialsId: "${env.GitAuth}", 
+                withCredentials([usernamePassword(credentialsId: "${env.GIT_CRED_ID}", 
                                 passwordVariable: 'GIT_PASSWORD', 
                                 usernameVariable: 'GIT_USERNAME')]) {
-                    bat '''
-                        # Configure git user
-                        git config user.email "jenkins@example.com"
-                        git config user.name "Jenkins CI"
-                        
+                    bat '''                        
                         # Set remote with credentials
                         git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@${REPO_URL}
                         
