@@ -1,5 +1,4 @@
 import os
-import git
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -127,14 +126,6 @@ product_url = "https://www.saucedemo.com/inventory.html"
 cart_url = "https://www.saucedemo.com/cart.html"
 thanks_url = "https://www.saucedemo.com/checkout-complete.html"
  
-# Exclude old file 
-file_to_delete = 'index.html'
-repo_path = 'https://github.com/luckxander/shop/'
-repo = git.Repo(repo_path)
-if os.path.exists(os.path.join(repo_path, file_to_delete)):
-    repo.index.remove([file_to_delete], working_tree=True)
-    print(f"Deleted and staged '{file_to_delete}'")
-
  
 # --- Execution ---
 if __name__ == "__main__":
