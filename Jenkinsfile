@@ -50,9 +50,8 @@ pipeline {
                       
                         bat 'git push https://${GIT_USER}:${GIT_PASS}@://github.com HEAD:main'
                         }
-                }            
-            }
-        }
+            }            
+         }
     }
     post {
         always {
