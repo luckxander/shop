@@ -37,15 +37,26 @@ pipeline {
                 }
             }
         }
-            stage('Commit & Push') {
+        stage('Commit & Push') {
             steps {
-                bat '''
-                    git config user.email "lusenabh@gmail.com"
-                    git config user.name "admin_auto_py"
-                    git add index.html
-                    git commit -m "Updating HTML Report"
-                    git push https://${GIT_CRED}@github.com/luckxander/shop.git HEAD:main
-                '''
+                // Bind credentials securely
+                withCredentials([usernamePassword(credentialsId: "${env.GIT_CRED_ID}", 
+                                passwordVariable: 'GIT_PASSWORD', 
+                                usernameVariable: 'GIT_USERNAME')]) {
+                    bat '''
+                        # Configure git user
+                        git config user.email "jenkins@example.com"
+                        git config user.name "Jenkins CI"
+                        
+                        # Set remote with credentials
+                        git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@${REPO_URL}
+                        
+                        # Push changes
+                        git add .
+                        git commit -m "Automated push from Jenkins"
+                        git push origin HEAD:main
+                    '''
+                }            
             }
         }
     }
