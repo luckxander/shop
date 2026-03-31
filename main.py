@@ -177,5 +177,6 @@ if __name__ == "__main__":
     # Save the output to a index file
     with open("index.html", "w") as file:
         file.write(output) 
+        file.close()
 
 driver.quit()
