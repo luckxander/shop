@@ -147,9 +147,9 @@ original_content = """
     </body>
     </html>
     """
-    # Clean the last result values from index.html and restore variables
-    #with open('index.html', 'w') as file:
-        #file.write(original_content) 
+# Clean the last result values from index.html and restore variables
+with open('index.html', 'w') as file:
+    file.write(original_content) 
  
     
 # --- Execution ---
