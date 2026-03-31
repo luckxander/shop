@@ -48,7 +48,7 @@ pipeline {
                                 passwordVariable: 'GIT_PASS', 
                                 usernameVariable: 'GIT_USER')]) {
                       
-                        bat 'git push https://${GIT_USER}:${GIT_PASS}@://github.com/luckxander/shop HEAD:main'
+                        bat 'git push https://${GIT_USER}:${GIT_PASS}@github.com/luckxander/shop HEAD:main'
                         }
             }            
          }
