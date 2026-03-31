@@ -1,0 +1,75 @@
+pipeline {
+    agent any
+    triggers {
+        // Run daily at 1:00 AM Github server time
+        cron('H 1 * * *') 
+    }
+    options {
+        // Required to clean before the default SCM checkout
+        skipDefaultCheckout(true) 
+    }
+    stages {
+        stage('Clean') {
+            steps {
+                cleanWs() // Clean the workspace
+            }
+        }
+        stage('Git Checkout') {
+            steps {
+                // The pipeline automatically checks out code if configured as Pipeline script from SCM'
+                git branch: 'main', url: 'https://github.com/luckxander/shop'
+            }
+        }
+        stage('Run Python Script') {
+            steps {
+                // Automatically aborts after 10 minutes
+                timeout(time: 1, unit: 'MINUTES') {
+                    // Execute the Python script and print real time output to console
+                    bat 'python -u C:\\Python\\shop\\main.py'
+                }
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                if (currentBuild.result == 'SUCCESS') {
+                    echo 'Build successful! It will send an email'
+                    emailext (
+                                subject: "Success: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                                body: "Build successful! View the details at: ${env.BUILD_URL}",
+                                to: "lusenabh@gmail.com",
+                                recipientProviders: [
+                                    culprits(), 
+                                    requestor()
+                                ]
+                    )
+                } 
+                else if (currentBuild.result == 'FAILURE') {
+                    echo 'Build failure! It will send an email'
+                    emailext (
+                                subject: "Build Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                                body: "Build failed. Check the console output here: ${env.BUILD_URL}",
+                                to: "lusenabh@gmail.com",
+                                recipientProviders: [
+                                    culprits(), 
+                                    requestor()
+                                ]
+                    )
+                } 
+                else {
+                    echo "Build finished with an unusual result: ${currentBuild.result}. It will send "
+                    emailext (
+                                subject: "Unusual build result: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                                body: "Build finished with an unusual result. Check the console output here: ${env.BUILD_URL}",
+                                to: "lusenabh@gmail.com",
+                                recipientProviders: [
+                                    culprits(), 
+                                    requestor()
+                                ]
+                    )                    
+                }
+            }
+        }
+    }
+}
