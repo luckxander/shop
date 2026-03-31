@@ -20,6 +20,14 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/luckxander/shop'
             }
         }
+        stage('Update HTML') {
+            steps {
+                timeout(time: 1, unit: 'MINUTES') {
+                    // Execute the Python script and print real time output to console
+                    bat 'python -u C:\\Python\\shop\\main.py "$(date)"'
+                }
+            }
+        }
         stage('Run Python Script') {
             steps {
                 // Automatically aborts after 10 minutes
@@ -27,6 +35,17 @@ pipeline {
                     // Execute the Python script and print real time output to console
                     bat 'python -u C:\\Python\\shop\\main.py'
                 }
+            }
+        }
+            stage('Commit & Push') {
+            steps {
+                bat '''
+                    git config user.email "lusenabh@gmail.com"
+                    git config user.name "admin_auto_py"
+                    git add index.html
+                    git commit -m "Updating HTML Report"
+                    git push https://${GIT_CRED}@github.com/luckxander/shop.git HEAD:main
+                '''
             }
         }
     }
