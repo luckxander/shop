@@ -21,14 +21,14 @@ if not username_val or not password_val:
     raise ValueError("Username and/or password environment variables not set.")
 
 chrome_options = Options()
-# Arguments to prevent popups
+# Arguments to prevent popup windows
 prefs = {
     "credentials_enable_service": False,
     "profile.password_manager_enabled": False,
     "profile.password_manager_leak_detection": False
 }
 chrome_options.add_experimental_option("prefs", prefs)
-# Additional arguments to prevent popups
+# Additional arguments to prevent popup windows
 chrome_options.add_argument("--disable-infobars")
 chrome_options.add_argument("--disable-save-password-bubble")
 driver = webdriver.Chrome(options=chrome_options) 
@@ -136,8 +136,33 @@ if __name__ == "__main__":
     values = checkout_complete(thanks_url)
     confirm, home = values
     
+    # HTML file with variables
+    update_index_html = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Execution Report</title>
+    </head>
+    <body>
+        <h2>Test automation using Python + Selenium</h2>
+        <h3>It uses fake shopping cart testing purpose</h3>
+        <h4>Execution Report</h4>
+        <p>Last run: {{ datetime_string }}</p>
+        <p>Below are the statuses from steps</p>
+        <p><b>Login:</b> {{ login }}</p>
+        <p><b>Add item to cart:</b> {{ cart }}</p>
+        <p><b>Checkout:</b> {{ checkout }}</p>
+        <p><b>Confirm checkout:</b> {{ confirm }}</p>
+        <p><b>Back to home:</b>  {{ home }}</p>
+    </body>
+    </html>
+    """
+    # Clean the last result values from index.html and restore variables
+    with open('index.html', 'w') as file:
+        file.write(update_index_html)
+    
     # Set up the Jinja2 environment
-    env = Environment(loader=FileSystemLoader('.')) # Load templates from the current directory
+    env = Environment(loader=FileSystemLoader('.')) 
     template = env.get_template('report_template.html')
     
     # Render the template with data
@@ -148,7 +173,7 @@ if __name__ == "__main__":
         confirm=confirm, 
         home=home)                          
     
-    # Save the output to a file
+    # Save the output to a index file
     with open("index.html", "w") as file:
         file.write(output) 
 
