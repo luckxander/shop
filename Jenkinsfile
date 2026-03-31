@@ -45,17 +45,11 @@ pipeline {
             steps {
                 // Bind credentials securely
                 withCredentials([usernamePassword(credentialsId: "${env.GIT_CRED_ID}", 
-                                passwordVariable: 'GIT_PASSWORD', 
-                                usernameVariable: 'GIT_USERNAME')]) {
-                    bat '''                        
-                        # Set remote with credentials
-                        git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@${REPO_URL}
-                        
-                        # Push changes
-                        git add .
-                        git commit -m "Automated push from Jenkins"
-                        git push origin HEAD:main
-                    '''
+                                passwordVariable: 'GIT_PASS', 
+                                usernameVariable: 'GIT_USER')]) {
+                      
+                        bat 'git push https://${GIT_USER}:${GIT_PASS}@://github.com HEAD:main'
+                        }
                 }            
             }
         }
