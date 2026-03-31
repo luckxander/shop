@@ -149,7 +149,7 @@ if __name__ == "__main__":
         home=home)                          
     
     # Save the output to a file
-    with open("result.html", "w") as file:
+    with open("index.html", "w") as file:
         file.write(output) 
 
 driver.quit()
