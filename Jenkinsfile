@@ -40,7 +40,7 @@ pipeline {
         stage('Commit & Push') {
             steps {
                 // Bind credentials securely
-                withCredentials([usernamePassword(credentialsId: "${env.GIT_CRED_ID}", 
+                withCredentials([usernamePassword(credentialsId: "${env.GitAuth}", 
                                 passwordVariable: 'GIT_PASSWORD', 
                                 usernameVariable: 'GIT_USERNAME')]) {
                     bat '''
