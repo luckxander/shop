@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    environment {
-        // Global environment variable
-        GitPush = 'true'
-    }
     triggers {
         // Run daily at 1:00 AM Github server time
         cron('H 0 * * *') 
@@ -44,15 +40,17 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    // ... (perform local changes and commit as shown above) ...
-                    bat 'echo "Modified at $(date)" >> version.txt'
-                    bat 'git config user.name "luckxander"'
-                    bat 'git config user.email "lusenabh@gmail.com"'
-                    bat 'git add .'
-                    bat 'git commit -m "Automatic commit from pipeline [ci skip]"'
-                    // Use the dedicated gitPush step
-                    // 'scm' refers to the SCM configuration used in the initial checkout
-                    gitPush(gitScm: scm, targetBranch: 'main', targetRepo: 'origin')
+                    withCredentials([gitUsernamePassword(credentialsId: 'GitPush', gitToolName: 'Default')]) {
+                        // Inside this block, GIT_ASKPASS is set up automatically.
+                        // The environment variables GIT_USERNAME and GIT_PASSWORD are also available.
+                        bat 'echo "Modified at $(date)" >> version.txt'
+                        bat 'git config user.name "luckxander"'
+                        bat 'git config user.email "lusenabh@gmail.com"'
+                        bat 'git add .'
+                        bat 'git commit -m "Automatic commit from pipeline [ci skip]"'
+                        // Use the dedicated gitPush step
+                        // 'scm' refers to the SCM configuration used in the initial checkout
+                        gitPush(gitScm: scm, targetBranch: 'main', targetRepo: 'origin')
                 }                            
             }
 
