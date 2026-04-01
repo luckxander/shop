@@ -122,22 +122,6 @@ def checkout_complete(thanks_url):
         home = f"Failed back to home: {e}"
     return confirm, home
 
-# Commit the updated HTML
-def git_push_automation():
-    try:
-        # 1. Add all changes
-        subprocess.run(["git", "add", "."], check=True)
-            
-        # 2. Commit
-        subprocess.run(["git", "commit", "-m", 'Commit via subprocess'], check=True)
-            
-        # 3. Push
-        subprocess.run(["git", "push", "origin", "main"], check=True)
-            
-        print("Push successful!")
-    except subprocess.CalledProcessError as e:
-        print(f"Error occurred: {e}")
-
 # Shopping Cart URLs after login successful
 product_url = "https://www.saucedemo.com/inventory.html"
 cart_url = "https://www.saucedemo.com/cart.html"
@@ -173,14 +157,14 @@ if __name__ == "__main__":
     # Commit in Github   
     subprocess.call('git config user.email "lusenabh@gmail.com"', shell=True)
     subprocess.call('git config user.name "luckxander"', shell=True)
-    git_push_automation()
-    # # Git Add
-    # subprocess.call(f'git add {FILE_TO_COMMIT}', shell=True) 
-    # # Git Commit 
-    # subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True)
-
-
-
+    FILE_TO_COMMIT = 'index.html'
+    COMMIT_MESSAGE = 'Commit via subprocess'
+    # Git Add
+    subprocess.call(f'git add {FILE_TO_COMMIT}', shell=True) 
+    # Git Commit 
+    subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True)
+    # Git Push 
+    #subprocess.call(f'git push origin main --force', shell=True)
     
 
 driver.quit()
