@@ -26,37 +26,8 @@ pipeline {
                 timeout(time: 1, unit: 'MINUTES') {
                     // Execute the Python script and print real time output to console
                     bat 'python -u C:\\Python\\shop\\main.py'
-                    publishHTML(target: [
-                        allowMissing: false, 
-                        alwaysLinkToLastBuild: true, // Links latest report
-                        keepAll: false, // Overwrites old reports
-                        reportDir: '.', // Directory where report is saved (root)
-                        reportFiles: 'index.html', 
-                        reportName: 'Python Test Report' 
-                    ])
                 }
             }
-        }
-        stage('Push') {
-            steps {
-                script {
-                    withCredentials([gitUsernamePassword(credentialsId: 'GitAuth', gitToolName: 'Default')]) {
-                        // Inside this block, GIT_ASKPASS is set up automatically.
-                        // The environment variables GIT_USERNAME and GIT_PASSWORD are also available.
-                        '''
-                            bat 'echo "Modified at $(date)" >> version.txt'
-                            bat 'git config user.name "luckxander"'
-                            bat 'git config user.email "lusenabh@gmail.com"'
-                            bat 'git add .'
-                            bat 'git commit -m "Automatic commit from pipeline [ci skip]"'
-                            // Use the dedicated gitPush step
-                            // 'scm' refers to the SCM configuration used in the initial checkout
-                            gitPush(gitScm: scm, targetBranch: 'main', targetRepo: 'origin')
-                        '''
-                    }
-                }                            
-            }
-
         }
     }
     post {
