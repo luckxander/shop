@@ -9,8 +9,6 @@ from selenium.webdriver.chrome.options import Options
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
 
-# Fake url for shopping cart automation
-
 # In the same folder create a file named .env with credentials
 # Loads variables from .env
 load_dotenv()  
