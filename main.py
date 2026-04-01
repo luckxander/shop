@@ -159,10 +159,12 @@ if __name__ == "__main__":
     subprocess.call('git config user.name "luckxander"', shell=True)
     FILE_TO_COMMIT = 'index.html'
     COMMIT_MESSAGE = 'Commit via subprocess'
-    # Add the updated file
+    # Git Add
     subprocess.call(f'git add {FILE_TO_COMMIT}', shell=True) 
-    # Commit file
+    # Git Commit 
     subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True)
+    # Git Push 
+    subprocess.call(f'git push origin main --force', shell=True)
     
 
 driver.quit()
