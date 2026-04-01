@@ -1,4 +1,5 @@
 import os
+import subprocess
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -152,5 +153,13 @@ if __name__ == "__main__":
     # Save the output to a index file
     with open("index.html", "w") as file:
         file.write(output) 
+        
+    #FILE_TO_COMMIT = 'index.html'
+    #COMMIT_MESSAGE = 'Commit via subprocess'
+    
+    # Commit the changes (git commit -m "...")
+    subprocess.call(f'git add .', shell=True) 
+    # Push the changes
+    subprocess.call('git push origin main', shell=True)
 
 driver.quit()
