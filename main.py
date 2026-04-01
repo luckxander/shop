@@ -129,7 +129,8 @@ thanks_url = "https://www.saucedemo.com/checkout-complete.html"
  
 # Delete outdated file
 file_path = "index.html"
-os.remove(file_path)
+if file_path != None:
+    os.remove(file_path)
  
 # --- Execution ---
 if __name__ == "__main__":
