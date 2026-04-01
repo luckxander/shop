@@ -51,6 +51,7 @@ pipeline {
                         // Use the dedicated gitPush step
                         // 'scm' refers to the SCM configuration used in the initial checkout
                         gitPush(gitScm: scm, targetBranch: 'main', targetRepo: 'origin')
+                    }
                 }                            
             }
 
