@@ -127,10 +127,7 @@ product_url = "https://www.saucedemo.com/inventory.html"
 cart_url = "https://www.saucedemo.com/cart.html"
 thanks_url = "https://www.saucedemo.com/checkout-complete.html"
  
-# Delete outdated file
-file_path = "index.html"
-if file_path != None:
-    os.remove(file_path)
+
  
 # --- Execution ---
 if __name__ == "__main__":
@@ -155,8 +152,8 @@ if __name__ == "__main__":
         home=home)                          
     
     # Save the output to a index file
-    #with open("index.html", "w") as file:
-        #file.write(output) 
+    with open("index.html", "w") as file:
+        file.write(output) 
      
     # # Commit in Github   
     # subprocess.call('git config user.email "lusenabh@gmail.com"', shell=True)
