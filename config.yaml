@@ -1,0 +1,11 @@
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write  # Allows pushing changes to the repo
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run script
+        run: python main.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
