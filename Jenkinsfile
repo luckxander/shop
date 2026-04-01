@@ -54,12 +54,12 @@ pipeline {
     post {
         always {
              // Publish the HTML report using the plugin step
-            publishHTML([
+            publishHTML(target: [
                 allowMissing: false, 
-                alwaysLinkToLastBuild: false, 
-                keepAll: true, 
-                reportDir: '.', // Directory where report is saved
-                reportFiles: 'index.html', // Index page file name
+                alwaysLinkToLastBuild: true, // Links latest report
+                keepAll: false, // Overwrites old reports
+                reportDir: '.', // Directory where report is saved (root)
+                reportFiles: 'index.html', 
                 reportName: 'Python Test Report' 
             ])
             script {
