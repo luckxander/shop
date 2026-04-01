@@ -165,11 +165,11 @@ if __name__ == "__main__":
     subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True)
     # Git Push 
     # Returns 0 on success, non-zero on failure
-    exit_code = subprocess.call(["git", "push", "origin", "main"])
-    if exit_code == 0:
-        print("Push successful!")
-    else:
-        print(f"Push failed with code {exit_code}")
+    # exit_code = subprocess.call(["git", "push", "origin", "main"])
+    # if exit_code == 0:
+    #     print("Push successful!")
+    # else:
+    #     print(f"Push failed with code {exit_code}")
     
 
 driver.quit()
