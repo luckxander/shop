@@ -148,8 +148,6 @@ if __name__ == "__main__":
         confirm=confirm, 
         home=home)                          
     
-    print(output)
-    
     # Save the output to a index file
     with open("index.html", "w") as file:
         file.write(output) 
