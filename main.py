@@ -154,18 +154,18 @@ if __name__ == "__main__":
         home=home)                          
     
     # Save the output to a index file
-    with open("index.html", "w") as file:
-        file.write(output) 
+    #with open("index.html", "w") as file:
+        #file.write(output) 
      
-    # Commit in Github   
-    subprocess.call('git config user.email "lusenabh@gmail.com"', shell=True)
-    subprocess.call('git config user.name "luckxander"', shell=True)
-    FILE_TO_COMMIT = 'index.html'
-    COMMIT_MESSAGE = 'Commit via subprocess'
+    # # Commit in Github   
+    # subprocess.call('git config user.email "lusenabh@gmail.com"', shell=True)
+    # subprocess.call('git config user.name "luckxander"', shell=True)
+    # FILE_TO_COMMIT = 'index.html'
+    # COMMIT_MESSAGE = 'Commit via subprocess'
     # Git Add
-    subprocess.call(f'git add {FILE_TO_COMMIT}', shell=True) 
+    #subprocess.call(f'git add {FILE_TO_COMMIT}', shell=True) 
     # Git Commit 
-    subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True)
+    #subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True)
     # Git Push 
     # Returns 0 on success, non-zero on failure
     # exit_code = subprocess.call(["git", "push", "origin", "main"])
