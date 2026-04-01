@@ -1,4 +1,5 @@
 import os
+import subprocess
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -137,7 +138,7 @@ if __name__ == "__main__":
     checkout = checkout(cart_url)
     values = checkout_complete(thanks_url)
     confirm, home = values
-        
+           
     # Set up the Jinja2 environment
     env = Environment(loader=FileSystemLoader('.')) 
     template = env.get_template('report_template.html')
@@ -154,22 +155,23 @@ if __name__ == "__main__":
     with open("index.html", "w") as file:
         file.write(output) 
      
-    # # Commit in Github   
-    # subprocess.call('git config user.email "lusenabh@gmail.com"', shell=True)
-    # subprocess.call('git config user.name "luckxander"', shell=True)
-    # FILE_TO_COMMIT = 'index.html'
-    # COMMIT_MESSAGE = 'Commit via subprocess'
+    # Commit in Github   
+    subprocess.call('git config user.email "lusenabh@gmail.com"', shell=True)
+    subprocess.call('git config user.name "luckxander"', shell=True)
+    subprocess.call('git update-index --chmod=+x main.py')
+    FILE_TO_COMMIT = 'index.html'
+    COMMIT_MESSAGE = 'Commit via subprocess'
     # Git Add
-    #subprocess.call(f'git add {FILE_TO_COMMIT}', shell=True) 
+    subprocess.call(f'git add {FILE_TO_COMMIT}', shell=True) 
     # Git Commit 
-    #subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True)
+    subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True)
     # Git Push 
     # Returns 0 on success, non-zero on failure
-    # exit_code = subprocess.call(["git", "push", "origin", "main"])
-    # if exit_code == 0:
-    #     print("Push successful!")
-    # else:
-    #     print(f"Push failed with code {exit_code}")
+    exit_code = subprocess.call(["git", "push", "origin", "main"])
+    if exit_code == 0:
+        print("Push successful!")
+    else:
+        print(f"Push failed with code {exit_code}")
     
 
 driver.quit()
