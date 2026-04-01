@@ -46,8 +46,9 @@ pipeline {
                 // Bind credentials securely
                 withCredentials([usernamePassword(credentialsId: "${env.GIT_CRED_ID}", 
                                 passwordVariable: 'GIT_PASSWORD', 
-                                usernameVariable: 'GIT_USERNAME')]) {                      
-                            bat 'git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/luckxander/shop HEAD:main'
+                                usernameVariable: 'GIT_USERNAME')]) {      
+                                echo "Username: {usernameVariable}"             
+                            //bat 'git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/luckxander/shop HEAD:main'
                         }
             }            
          }
