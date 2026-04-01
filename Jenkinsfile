@@ -53,6 +53,15 @@ pipeline {
     }
     post {
         always {
+             // Publish the HTML report using the plugin step
+            publishHTML([
+                allowMissing: false, 
+                alwaysLinkToLastBuild: false, 
+                keepAll: true, 
+                reportDir: '.', // Directory where report is saved
+                reportFiles: 'index.html', // Index page file name
+                reportName: 'Python Test Report' 
+            ])
             script {
                 if (currentBuild.result == 'SUCCESS') {
                     echo 'Build successful! It will send an email'
