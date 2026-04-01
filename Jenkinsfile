@@ -1,9 +1,6 @@
 pipeline {
     agent any
-    environment {
-        // Set your credential ID here
-        GIT_CRED_ID = 'GitPush'
-    }
+
     triggers {
         // Run daily at 1:00 AM Github server time
         cron('H 0 * * *') 
