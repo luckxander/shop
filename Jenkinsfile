@@ -32,7 +32,7 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    withCredentials([gitUsernamePassword(credentialsId: 'GitPush', gitToolName: 'Default')]) {
+                    withCredentials([gitUsernamePassword(credentialsId: 'GitAuth', gitToolName: 'Default')]) {
                         // Inside this block, GIT_ASKPASS is set up automatically.
                         // The environment variables GIT_USERNAME and GIT_PASSWORD are also available.
                         '''
