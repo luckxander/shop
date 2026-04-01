@@ -44,10 +44,9 @@ pipeline {
                     // ... (perform local changes and commit as shown above) ...
                     bat 'echo "Modified at $(date)" >> version.txt'
                     bat 'git config user.name "luckxander"'
-                    sh 'git config user.email "K@rla100"'
-                    sh 'git add .'
-                    sh 'git commit -m "Automatic commit from pipeline [ci skip]"'
-
+                    bat 'git config user.email "lusenabh@gmail.com"'
+                    bat 'git add .'
+                    bat 'git commit -m "Automatic commit from pipeline [ci skip]"'
                     // Use the dedicated gitPush step
                     // 'scm' refers to the SCM configuration used in the initial checkout
                     gitPush(gitScm: scm, targetBranch: 'main', targetRepo: 'origin')
