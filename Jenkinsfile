@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        // Global environment variable
+        GitPush = 'true'
+    }
     triggers {
         // Run daily at 1:00 AM Github server time
         cron('H 0 * * *') 
