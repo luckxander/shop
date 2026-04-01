@@ -26,6 +26,14 @@ pipeline {
                 timeout(time: 1, unit: 'MINUTES') {
                     // Execute the Python script and print real time output to console
                     bat 'python -u C:\\Python\\shop\\main.py'
+                    publishHTML(target: [
+                        allowMissing: false, 
+                        alwaysLinkToLastBuild: true, // Links latest report
+                        keepAll: false, // Overwrites old reports
+                        reportDir: '.', // Directory where report is saved (root)
+                        reportFiles: 'index.html', 
+                        reportName: 'Python Test Report' 
+                    ])
                 }
             }
         }
@@ -53,15 +61,6 @@ pipeline {
     }
     post {
         always {
-             // Publish the HTML report using the plugin step
-            publishHTML(target: [
-                allowMissing: false, 
-                alwaysLinkToLastBuild: true, // Links latest report
-                keepAll: false, // Overwrites old reports
-                reportDir: '.', // Directory where report is saved (root)
-                reportFiles: 'index.html', 
-                reportName: 'Python Test Report' 
-            ])
             script {
                 if (currentBuild.result == 'SUCCESS') {
                     echo 'Build successful! It will send an email'
