@@ -44,12 +44,10 @@ pipeline {
         stage('Push') {
             steps {
                 // Bind credentials securely
-                withCredentials([usernamePassword(credentialsId: "${env.GIT_CRED_ID}", 
-                                passwordVariable: 'GIT_PASSWORD', 
-                                usernameVariable: 'GIT_USERNAME')]) {      
-                                print(f, "Username: {usernameVariable}")             
-                            //bat 'git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/luckxander/shop HEAD:main'
-                        }
+                withCredentials([usernamePassword(credentialsId: 'GitPushToken', 
+                                  passwordVariable: 'GIT_PASSWORD', 
+                                  usernameVariable: 'GIT_USERNAME')]) {
+                    bat 'git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/luckxander/shop.git HEAD:main'
             }            
          }
     }
