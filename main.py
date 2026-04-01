@@ -164,7 +164,13 @@ if __name__ == "__main__":
     # Commit file
     subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True)
     # Push the changes
-    subprocess.call(f'git push origin main', shell=True)
+    try:
+        subprocess.run(['git', 'push', 'origin', 'main'], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Git push failed with error: {e.returncode}")
+        # You can access more details via e.stdout and e.stderr
+    except FileNotFoundError:
+        print("Git command not found. Make sure Git is installed and in your PATH.")
 
 
 driver.quit()
