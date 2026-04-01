@@ -153,10 +153,12 @@ if __name__ == "__main__":
     # Save the output to a index file
     with open("index.html", "w") as file:
         file.write(output) 
-            
-    # Add the updated file
-    subprocess.call(f'git add .', shell=True) 
-    # Push the changes
-    subprocess.call('git push origin main', shell=True)
+        subprocess.call('git config user.email "lusenabh@gmail.com"', shell=True)
+        subprocess.call('git config user.name "luckxander"', shell=True)
+        # Add the updated file
+        subprocess.call(f'git add .', shell=True) 
+        # Push the changes
+        subprocess.call('git push origin main', shell=True)
+
 
 driver.quit()
