@@ -47,7 +47,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: "${env.GIT_CRED_ID}", 
                                 passwordVariable: 'GIT_PASSWORD', 
                                 usernameVariable: 'GIT_USERNAME')]) {      
-                                print(usernameVariable)             
+                                print(f, Username: {usernameVariable})             
                             //bat 'git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/luckxander/shop HEAD:main'
                         }
             }            
