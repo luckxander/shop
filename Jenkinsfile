@@ -40,13 +40,20 @@ pipeline {
         }
         stage('Push') {
             steps {
-                // Bind credentials securely
-                withCredentials([usernamePassword(credentialsId: 'GIT_CRED_ID', 
-                                  passwordVariable: 'GIT_PASSWORD', 
-                                  usernameVariable: 'GIT_USERNAME')]) {
-                    bat 'git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/luckxander/shop.git HEAD:main'
-                 }            
+                script {
+                    // ... (perform local changes and commit as shown above) ...
+                    bat 'echo "Modified at $(date)" >> version.txt'
+                    bat 'git config user.name "luckxander"'
+                    sh 'git config user.email "K@rla100"'
+                    sh 'git add .'
+                    sh 'git commit -m "Automatic commit from pipeline [ci skip]"'
+
+                    // Use the dedicated gitPush step
+                    // 'scm' refers to the SCM configuration used in the initial checkout
+                    gitPush(gitScm: scm, targetBranch: 'main', targetRepo: 'origin')
+                }                            
             }
+
         }
     }
     post {
