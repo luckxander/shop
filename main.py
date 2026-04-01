@@ -163,6 +163,8 @@ if __name__ == "__main__":
     COMMIT_MESSAGE = 'Commit via subprocess'
     # Git Add
     subprocess.call(f'git add {FILE_TO_COMMIT}', shell=True) 
+    # Git grant permission
+    subprocess.call(f'git update-index --chmod=+x {FILE_TO_COMMIT}', shell=True)
     # Git Commit 
     subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True)
     # Git Push 
