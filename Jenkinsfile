@@ -20,14 +20,6 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/luckxander/shop'
             }
         }
-        stage('Update HTML') {
-            steps {
-                timeout(time: 1, unit: 'MINUTES') {
-                    // Execute the Python script and print real time output to console
-                    bat 'python -u C:\\Python\\shop\\main.py'
-                }
-            }
-        }
         stage('Run Python Script') {
             steps {
                 // Automatically aborts after 1 minute
