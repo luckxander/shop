@@ -41,14 +41,14 @@ pipeline {
                 }
             }
         }
-        stage('Commit & Push') {
+        stage('Push') {
             steps {
                 // Bind credentials securely
                 withCredentials([usernamePassword(credentialsId: "${env.GIT_CRED_ID}", 
                                 passwordVariable: 'GIT_PASSWORD', 
                                 usernameVariable: 'GIT_USERNAME')]) {
                       
-                        bat 'git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/luckxander/shop HEAD:main'
+                            git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/luckxander/shop HEAD:main
                         }
             }            
          }
