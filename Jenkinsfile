@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     triggers {
         // Run daily at 1:00 AM Github server time
         cron('H 0 * * *') 
@@ -25,13 +24,13 @@ pipeline {
             steps {
                 timeout(time: 1, unit: 'MINUTES') {
                     // Execute the Python script and print real time output to console
-                    bat 'python -u C:\\Python\\shop\\main.py "$(date)"'
+                    bat 'python -u C:\\Python\\shop\\main.py'
                 }
             }
         }
         stage('Run Python Script') {
             steps {
-                // Automatically aborts after 10 minutes
+                // Automatically aborts after 1 minute
                 timeout(time: 1, unit: 'MINUTES') {
                     // Execute the Python script and print real time output to console
                     bat 'python -u C:\\Python\\shop\\main.py'
