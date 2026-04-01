@@ -160,6 +160,6 @@ if __name__ == "__main__":
     # Commit the changes (git commit -m "...")
     subprocess.call(f'git commit -m "{COMMIT_MESSAGE}"', shell=True) 
     # Push the changes
-    subprocess.call('git push origin master', shell=True)
+    subprocess.call('git push origin main', shell=True)
 
 driver.quit()
