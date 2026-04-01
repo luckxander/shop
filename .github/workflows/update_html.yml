@@ -1,4 +1,6 @@
 name: Update HTML
+permission:
+  write
 on: [push] # Runs every time you push code
 
 jobs:
