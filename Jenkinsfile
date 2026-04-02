@@ -34,8 +34,8 @@ pipeline {
                 // Automatically aborts after 1 minute
                 timeout(time: 1, unit: 'MINUTES') {
                     bat '''
-                        git config user.name "github-actions"
-                        git config user.email "github-actions@github.com"
+                        git config user.name "luckxander"
+                        git config user.email "lusenabh@gmail.com"
                         git add "index.html"
                         git commit -m "Auto-generate index.html" || echo "No changes to commit"
                         git push origin HEAD:main
