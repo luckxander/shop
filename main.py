@@ -1,4 +1,5 @@
 import os
+import base64
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -7,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
+from github import Github
 
 # In the same folder create a file named .env with credentials
 # Loads variables from .env
@@ -135,7 +137,7 @@ if __name__ == "__main__":
     checkout = checkout(cart_url)
     values = checkout_complete(thanks_url)
     confirm, home = values
-           
+                
     # Set up the Jinja2 environment
     env = Environment(loader=FileSystemLoader('.')) 
     template = env.get_template('report_template.html')
@@ -146,14 +148,11 @@ if __name__ == "__main__":
         login=login, cart=cart, 
         checkout=checkout, 
         confirm=confirm, 
-        home=home)                          
-    
+        home=home
+    )                          
+  
     # Save the output to a index file
     with open("index.html", "w") as file:
-        file.write(output) 
-     
-
-
-    
+        file.write(output)   
 
 driver.quit()
