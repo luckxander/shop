@@ -33,11 +33,13 @@ pipeline {
             steps {
                 // Automatically aborts after 1 minute
                 timeout(time: 1, unit: 'MINUTES') {
-                    bat 'git config user.name "github-actions"'
-                    bat 'git config user.email "github-actions@github.com"'
-                    bat 'git add index.html'
-                    bat 'git commit -m "Auto-generate index.html" || echo "No changes to commit"'
-                    bat 'git push'
+                    bat '''
+                        git config user.name "github-actions"
+                        git config user.email "github-actions@github.com"
+                        git add "index.html"
+                        git commit -m "Auto-generate index.html" || echo "No changes to commit"
+                        git push
+                    '''
                 }
             }
         }
