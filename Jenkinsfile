@@ -33,13 +33,13 @@ pipeline {
             steps {
                 // 'my-credentials-id' must be a 'Username with password' credential in Jenkins
                 // Use a Personal Access Token (PAT) as the password for GitHub/GitLab
-                withCredentials([gitUsernamePassword(credentialsId: 'my-credentials-id', gitToolName: 'Default')]) {
+                withCredentials([usernamePassword(credentialsId: 'my-credentials-id', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
                     bat '''
                         git config user.email "lusenabh@gmail.com"
                         git config user.name "luckxander"
                         git add .
                         git commit -m "Automated commit from Jenkins build ${BUILD_NUMBER}"
-                        git push origin HEAD:main
+                        git push https://${GIT_USER}:${GIT_PASS}@://github.com"
                     '''
         }
     }
