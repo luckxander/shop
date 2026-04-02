@@ -29,20 +29,21 @@ pipeline {
                 }
             }
         }
-        stage('Commit and Push') {
+        stage('Git Push') {
             steps {
-                // Automatically aborts after 1 minute
-                timeout(time: 1, unit: 'MINUTES') {
+                // 'my-credentials-id' must be a 'Username with password' credential in Jenkins
+                // Use a Personal Access Token (PAT) as the password for GitHub/GitLab
+                withCredentials([gitUsernamePassword(credentialsId: 'my-credentials-id', gitToolName: 'Default')]) {
                     bat '''
-                        git config user.name "luckxander"
                         git config user.email "lusenabh@gmail.com"
-                        git add "index.html"
-                        git commit -m "Auto-generate index.html" || echo "No changes to commit"
+                        git config user.name "luckxander"
+                        git add .
+                        git commit -m "Automated commit from Jenkins build ${BUILD_NUMBER}"
                         git push origin HEAD:main
                     '''
-                }
-            }
         }
+    }
+}
     }
     post {
         always {
