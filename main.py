@@ -126,8 +126,6 @@ product_url = "https://www.saucedemo.com/inventory.html"
 cart_url = "https://www.saucedemo.com/cart.html"
 thanks_url = "https://www.saucedemo.com/checkout-complete.html"
  
-
- 
 # --- Execution ---
 if __name__ == "__main__":
     current_datetime = datetime.now()
@@ -137,8 +135,14 @@ if __name__ == "__main__":
     checkout = checkout(cart_url)
     values = checkout_complete(thanks_url)
     confirm, home = values
-                
-    # Set up the Jinja2 environment
+         
+    # Clean old index.html content and restoring variables
+    with open('report_template.html', 'r', encoding='utf-8') as src:
+        content = src.read()
+    with open('index.html', 'w', encoding='utf-8') as dest:
+        dest.write(content)       
+
+    # Generating new index.html report
     env = Environment(loader=FileSystemLoader('.')) 
     template = env.get_template('report_template.html')
     
