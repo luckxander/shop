@@ -38,7 +38,7 @@ pipeline {
                         git config user.email "github-actions@github.com"
                         git add "index.html"
                         git commit -m "Auto-generate index.html" || echo "No changes to commit"
-                        git push
+                        git push --set-upstream origin main
                     '''
                 }
             }
