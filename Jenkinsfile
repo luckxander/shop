@@ -29,6 +29,18 @@ pipeline {
                 }
             }
         }
+        stage('Commit and Push') {
+            steps {
+                // Automatically aborts after 1 minute
+                timeout(time: 1, unit: 'MINUTES') {
+                    bat 'git config user.name "github-actions"'
+                    bat 'git config user.email "github-actions@github.com"'
+                    bat 'git add index.html'
+                    bat 'git commit -m "Auto-generate index.html" || echo "No changes to commit"'
+                    bat 'git push'
+                }
+            }
+        }
     }
     post {
         always {
