@@ -2,7 +2,7 @@ pipeline {
     agent any
     triggers {
         // Run daily at 1:00 AM Github server time
-        cron('H 0 * * *') 
+        cron('H 1 * * *') 
     }
     options {
         // Required to clean before the default SCM checkout
