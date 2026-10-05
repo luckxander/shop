@@ -18,11 +18,55 @@
     <h2>Test automation using Python + Selenium</h2>
     <h3>It uses fake shopping cart testing purpose</h3>
     <h4>Execution Report</h4>
-    <p>Last run: 05-10-2026 07:14:55</p>
+    <p>Last run: 05-10-2026 07:15:33</p>
     <p>Below are the statuses from steps</p>
     <p><b>Login:</b> Login successful!</p>
-    <p><b>Add item to cart:</b> Item added to cart!</p>
-    <p><b>Checkout:</b> Checkout OK</p>
+    <p><b>Add item to cart:</b> Failed to add item: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='add-to-cart']"}
+  (Session info: chrome=154.0.8037.95); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff6a35b9d55+5a55]
+	chromedriver!(No symbol) [0x7ff6a34df540]
+	chromedriver!(No symbol) [0x7ff6a33045fd]
+	chromedriver!(No symbol) [0x7ff6a335fca1]
+	chromedriver!(No symbol) [0x7ff6a335ff6c]
+	chromedriver!(No symbol) [0x7ff6a33b3077]
+	chromedriver!(No symbol) [0x7ff6a33afcd9]
+	chromedriver!(No symbol) [0x7ff6a3351a12]
+	chromedriver!(No symbol) [0x7ff6a3352823]
+	chromedriver!GetHandleVerifier [0x7ff6a39d04b1+41c1b1]
+	chromedriver!GetHandleVerifier [0x7ff6a39fe26b+449f6b]
+	chromedriver!GetHandleVerifier [0x7ff6a39f274e+43e44e]
+	chromedriver!GetHandleVerifier [0x7ff6a36b32fe+feffe]
+	chromedriver!(No symbol) [0x7ff6a34ecb55]
+	chromedriver!(No symbol) [0x7ff6a34e7f64]
+	chromedriver!(No symbol) [0x7ff6a34e80f4]
+	chromedriver!(No symbol) [0x7ff6a34d2e4c]
+	KERNEL32!BaseThreadInitThunk [0x7ffea8c7cdf7+17]
+	ntdll!RtlUserThreadStart [0x7ffea979ee4c+2c]
+</p>
+    <p><b>Checkout:</b> Failed to checkout: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='inventory-item-name']"}
+  (Session info: chrome=154.0.8037.95); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff6a35b9d55+5a55]
+	chromedriver!(No symbol) [0x7ff6a34df540]
+	chromedriver!(No symbol) [0x7ff6a33045fd]
+	chromedriver!(No symbol) [0x7ff6a335fca1]
+	chromedriver!(No symbol) [0x7ff6a335ff6c]
+	chromedriver!(No symbol) [0x7ff6a33b3077]
+	chromedriver!(No symbol) [0x7ff6a33afcd9]
+	chromedriver!(No symbol) [0x7ff6a3351a12]
+	chromedriver!(No symbol) [0x7ff6a3352823]
+	chromedriver!GetHandleVerifier [0x7ff6a39d04b1+41c1b1]
+	chromedriver!GetHandleVerifier [0x7ff6a39fe26b+449f6b]
+	chromedriver!GetHandleVerifier [0x7ff6a39f274e+43e44e]
+	chromedriver!GetHandleVerifier [0x7ff6a36b32fe+feffe]
+	chromedriver!(No symbol) [0x7ff6a34ecb55]
+	chromedriver!(No symbol) [0x7ff6a34e7f64]
+	chromedriver!(No symbol) [0x7ff6a34e80f4]
+	chromedriver!(No symbol) [0x7ff6a34d2e4c]
+	KERNEL32!BaseThreadInitThunk [0x7ffea8c7cdf7+17]
+	ntdll!RtlUserThreadStart [0x7ffea979ee4c+2c]
+</p>
     <p><b>Confirm checkout:</b> Thank you page displayed</p>
     <p><b>Back to home:</b>  Returned to Home</p>
 </body>
